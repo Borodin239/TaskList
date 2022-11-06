@@ -7,4 +7,5 @@ interface TaskListService {
     fun getById(id: Long): TaskList
     fun getAll(): List<TaskList>
     fun create(dto: TaskListDTO): TaskList
+    fun delete(id: Long)
 }

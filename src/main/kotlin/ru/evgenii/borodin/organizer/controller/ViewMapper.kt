@@ -11,6 +11,7 @@ class ViewMapper {
 
     fun taskToView(task: Task): TaskView {
         return TaskView(
+            id = task.id,
             name = task.name,
             status = task.status.name,
             deadline = task.deadline
@@ -19,6 +20,9 @@ class ViewMapper {
 
     fun taskListToView(list: TaskList): TaskListView {
         val tasks = list.tasks.map { taskToView(it) }
-        return TaskListView(list.name, tasks)
+        return TaskListView(
+            id = list.id,
+            name = list.name,
+            tasks = tasks)
     }
 }

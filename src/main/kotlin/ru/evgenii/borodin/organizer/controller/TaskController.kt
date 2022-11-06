@@ -35,7 +35,7 @@ class TaskController(
     }
 
     @Operation(summary = "Marks task as done")
-    @PatchMapping("/mark_done/{id}")
+    @PatchMapping("/markDone/{id}")
     fun taskDone(@PathVariable id: Long): TaskView {
         return viewMapper.taskToView(
            task = service.taskDone(id)
@@ -43,7 +43,7 @@ class TaskController(
     }
 
     @Operation(summary = "Marks task as InProgress")
-    @PatchMapping("/mark_in_progress/{id}")
+    @PatchMapping("/markInProgress/{id}")
     fun taskInProgress(@PathVariable id: Long): TaskView {
         return viewMapper.taskToView(
             task = service.taskInProgress(id)

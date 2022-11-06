@@ -7,7 +7,7 @@ import ru.evgenii.borodin.organizer.controller.view.TaskListView
 import ru.evgenii.borodin.organizer.service.TaskListService
 
 @RestController
-@RequestMapping("/api/task_list")
+@RequestMapping("/api/taskList")
 class TaskListController(
     private val service: TaskListService,
     private val viewMapper: ViewMapper
@@ -29,10 +29,16 @@ class TaskListController(
         }
     }
 
-    @Operation(summary = "Returns task list of interests")
+    @Operation(summary = "Creates new task list")
     @PostMapping("/create")
     fun createTaskList(@RequestBody taskListDTO: TaskListDTO): TaskListView {
         val list = service.create(taskListDTO)
         return viewMapper.taskListToView(list)
+    }
+
+    @Operation(summary = "Delete task list")
+    @DeleteMapping("/delete/{id}")
+    fun deleteTaskList(@PathVariable id: Long){
+        service.delete(id)
     }
 }

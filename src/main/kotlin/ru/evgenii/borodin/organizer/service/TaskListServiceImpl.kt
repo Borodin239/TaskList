@@ -18,10 +18,16 @@ class TaskListServiceImpl(
     override fun getAll(): List<TaskList> = repository.findAll()
 
     override fun create(dto: TaskListDTO): TaskList {
-        return TaskList(
+        val taskList = TaskList(
             id = 0,
             name = dto.name,
             tasks = listOf()
         )
+        return repository.save(taskList)
+    }
+
+    override fun delete(id: Long) {
+        val list = getById(id)
+        repository.delete(list)
     }
 }
